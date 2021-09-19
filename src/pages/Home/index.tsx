@@ -1,6 +1,7 @@
 import HomeImg from "../../assets/images/home-img.png";
 import {
   Container,
+  SearchContainer,
   Input,
   SearchIcon,
   BoxContent,
@@ -12,8 +13,10 @@ import {
 const Home: React.FC = () => {
   return (
     <Container>
-      <SearchIcon />
-      <Input placeholder="Search movies..." />
+      <SearchContainer>
+        <SearchIcon />
+        <Input placeholder="Search movies..." />
+      </SearchContainer>
       <BoxContent>
         <Image src={HomeImg} />
         <Title>Don't know what to search?</Title>

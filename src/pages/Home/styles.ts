@@ -5,19 +5,26 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const Input = styled.input`
+
+export const SearchContainer = styled.div`
+  position: relative;
   margin: 50px 120px 0 120px;
-  padding: 8px;
+  display: flex;
+  align-items: center;
+`;
+export const Input = styled.input`
+  width: 100%;
+  padding: 8px 0 8px 32px;
   border-radius: 4px;
   min-height: 30px;
   outline: none;
   border: none;
-  /* position: absolute; */
 `;
 
 export const SearchIcon = styled(AiOutlineSearch)`
-  /* color: #7b8c98; */
-  /* position: relative; */
+  color: #7b8c98;
+  position: absolute;
+  margin-left: 10px;
 `;
 export const BoxContent = styled.div`
   margin-top: 175px;
