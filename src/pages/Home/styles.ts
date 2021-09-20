@@ -1,11 +1,26 @@
 import styled from "styled-components";
-import { AiOutlineSearch } from "react-icons/ai";
 
 export const SearchContainer = styled.div`
   margin-bottom: 30px;
   display: flex;
   align-items: center;
+  position: relative;
+
+  > svg,
+  > div {
+    color: #7b8c98;
+    left: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  > div > svg {
+    color: inherit;
+    font-size: 12px;
+  }
 `;
+
 export const Input = styled.input`
   width: 100%;
   padding: 8px 0 8px 32px;
@@ -15,11 +30,6 @@ export const Input = styled.input`
   border: none;
 `;
 
-export const SearchIcon = styled(AiOutlineSearch)`
-  color: #7b8c98;
-  position: absolute;
-  margin-left: 10px;
-`;
 export const BoxContent = styled.div`
   text-align: center;
   flex: 1;

@@ -31,14 +31,19 @@ import IMDb from "../../assets/images/imdb.svg";
 import RatingImg from "../../assets/images/image-rating.svg";
 import { useContext, useEffect } from "react";
 import GlobalContext from "../../global/GlobalContext";
-import { useHistory, useParams } from "react-router";
+import { Redirect, useHistory, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import { BoxContent } from "../Home/styles";
 
+interface IDetailsParams {
+  id: string;
+}
+
 const Details: React.FC = () => {
-  const { id }: { id: string } = useParams();
+  const { id }: IDetailsParams = useParams();
+
   const {
-    state: { movie },
+    state: { movie, isLoading },
     requests: { getMovieDetail },
     setters: { setMovie },
   }: any = useContext(GlobalContext);
@@ -55,15 +60,21 @@ const Details: React.FC = () => {
     return () => {
       setMovie(undefined);
     };
-  }, []);
+  }, [id]);
 
-  if (!movie) {
+  if (isLoading) {
     return (
       <BoxContent>
         <Loader />
       </BoxContent>
     );
   }
+
+  if (movie === null) {
+    return <Redirect to="/" />;
+  }
+
+  if (!movie) return null;
 
   return (
     <>
@@ -130,7 +141,7 @@ const Details: React.FC = () => {
         </LeftSide>
 
         <RightSide>
-          <Cover src={movie.Poster} />
+          <Cover movie={movie} />
         </RightSide>
       </Content>
     </>

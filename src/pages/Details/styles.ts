@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsHeart, BsHeartFill, BsArrowLeft } from "react-icons/bs";
+import MoviePoster from "../../components/MoviePoster";
 
 export const Header = styled.div`
   margin-bottom: 16px;
@@ -162,8 +163,7 @@ export const RightSide = styled.div`
   justify-content: center;
 `;
 
-export const Cover = styled.img`
-  border-radius: 8px;
+export const Cover = styled(MoviePoster)`
   width: 360px;
   height: 508px;
 `;

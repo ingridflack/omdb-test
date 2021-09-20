@@ -1,17 +1,18 @@
+import { HTMLAttributes } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import {
-  Container,
-  Poster,
-  Overlay,
-  FavoriteButton,
-  Title,
-  Year,
-} from "./styles";
+import { LinkProps } from "react-router-dom";
+import { IMovie } from "../../config/interface";
+import MoviePoster from "../MoviePoster";
+import { Container, Overlay, FavoriteButton, Title, Year } from "./styles";
 
-const MovieCard: React.FC<any> = ({ item, ...props }) => {
+interface IMovieCard extends LinkProps, HTMLAttributes<HTMLAnchorElement> {
+  item: IMovie;
+}
+
+const MovieCard: React.FC<IMovieCard> = ({ item, ...props }) => {
   return (
     <Container {...props}>
-      <Poster src={item.Poster} />
+      <MoviePoster movie={item} />
       <Overlay>
         <FavoriteButton>{true ? <BsHeart /> : <BsHeartFill />}</FavoriteButton>
         <Title>{item.Title}</Title>

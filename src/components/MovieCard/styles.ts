@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Poster = styled.img`
@@ -24,7 +25,7 @@ export const Overlay = styled.span`
   justify-content: flex-end;
 `;
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   position: relative;
 
   ${Overlay}:hover {

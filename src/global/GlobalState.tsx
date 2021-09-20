@@ -2,13 +2,14 @@ import axios from "axios";
 import { useCallback, useMemo, useState } from "react";
 import GlobalContext from "./GlobalContext";
 import debounce from "lodash.debounce";
+import { IMovie } from "../config/interface";
 
 const GlobalState: React.FC = ({ children }) => {
-  const [searchResult, setSearchResult] = useState<any[] | undefined>();
+  const [searchResult, setSearchResult] = useState<IMovie[] | undefined>();
   const [search, setSearch] = useState("");
-  const [movie, setMovie] = useState();
+  const [movie, setMovie] = useState<IMovie | undefined>();
   const [isLoading, setIsLoading] = useState(false);
-  const [favorites, setFavorites] = useState<any[]>([]);
+  const [favorites, setFavorites] = useState<IMovie[]>([]);
 
   // const addToFavorites = (movie: any) => {
   //   if (seTaNoFavorites) {
@@ -58,7 +59,12 @@ const GlobalState: React.FC = ({ children }) => {
         },
       })
       .then((res) => {
-        setMovie(res.data);
+        console.log({ res });
+
+        const result = res.data.Error ? null : res.data;
+        console.log({ result });
+
+        setMovie(result);
         setIsLoading(false);
       })
       .catch((e) => {
@@ -70,6 +76,7 @@ const GlobalState: React.FC = ({ children }) => {
   const state = { searchResult, search, movie, isLoading };
   const setters = { setSearch, setMovie };
   const requests = { getSearchResult: debouncedFetchData, getMovieDetail };
+
   return (
     <GlobalContext.Provider value={{ state, setters, requests }}>
       {children}
