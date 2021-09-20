@@ -35,7 +35,7 @@ import { useHistory } from "react-router";
 
 const Details: React.FC = () => {
   const {
-    state: { data },
+    state: { searchResult },
   }: any = useContext(GlobalContext);
 
   const history = useHistory();
@@ -51,23 +51,23 @@ const Details: React.FC = () => {
           <BackIcon />
         </Button>
         <Info>
-          <InfoItem>{data.Runtime}</InfoItem>
-          <InfoItem>{data.Year}</InfoItem>
+          <InfoItem>{searchResult.Runtime}</InfoItem>
+          <InfoItem>{searchResult.Year}</InfoItem>
           <InfoItem>
-            <Span>{data.Rated}</Span>
+            <Span>{searchResult.Rated}</Span>
           </InfoItem>
         </Info>
       </Header>
 
       <LeftSide>
-        <MovieTitle>{data.Title}</MovieTitle>
+        <MovieTitle>{searchResult.Title}</MovieTitle>
 
         <Row>
           <Col>
             <ImdbContainer>
               <ImdbLogo src={IMDb} />
             </ImdbContainer>
-            <ColValue>{data.imdbRating}/10</ColValue>
+            <ColValue>{searchResult.imdbRating}/10</ColValue>
           </Col>
           <Col>
             <RTContainer>
@@ -83,33 +83,33 @@ const Details: React.FC = () => {
 
         <DetailsContainer>
           <Title>Plot</Title>
-          <TextContent>{data.Plot}</TextContent>
+          <TextContent>{searchResult.Plot}</TextContent>
 
           <ListContainer>
             <List>
               <Title>Cast</Title>
-              {data.Actors.split(",").map((actor: string) => (
+              {searchResult.Actors.split(",").map((actor: string) => (
                 <ListItem key={actor}>{actor.trim()}</ListItem>
               ))}
             </List>
 
             <List>
               <Title>Genre</Title>
-              {data.Genre.split(",").map((genre: string) => (
+              {searchResult.Genre.split(",").map((genre: string) => (
                 <ListItem key={genre}>{genre.trim()}</ListItem>
               ))}
             </List>
 
             <List>
               <Title>Director</Title>
-              <ListItem>{data.Director}</ListItem>
+              <ListItem>{searchResult.Director}</ListItem>
             </List>
           </ListContainer>
         </DetailsContainer>
       </LeftSide>
 
       <RightSide>
-        <Cover src={data.Poster} />
+        <Cover src={searchResult.Poster} />
       </RightSide>
     </Container>
   );

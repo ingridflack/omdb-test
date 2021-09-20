@@ -3,10 +3,10 @@ import { useState } from "react";
 import GlobalContext from "./GlobalContext";
 
 const GlobalState: React.FC = ({ children }) => {
-  const [data, setData] = useState();
+  const [searchResult, setSearchResult] = useState();
   const [search, setSearch] = useState("");
 
-  const getData = (search: string) => {
+  const getSearchResult = (search: string) => {
     axios
       .get("http://www.omdbapi.com", {
         params: {
@@ -15,7 +15,7 @@ const GlobalState: React.FC = ({ children }) => {
         },
       })
       .then((res) => {
-        setData(res.data.Search);
+        setSearchResult(res.data.Search);
         console.log("deeeeeeeu", { res });
       })
       .catch((e) => {
@@ -23,11 +23,11 @@ const GlobalState: React.FC = ({ children }) => {
       });
   };
 
-  console.log(data);
+  console.log(searchResult);
 
-  const state = { data, search };
+  const state = { searchResult, search };
   const setters = { setSearch };
-  const requests = { getData };
+  const requests = { getSearchResult };
   return (
     <GlobalContext.Provider value={{ state, setters, requests }}>
       {children}

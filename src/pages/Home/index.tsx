@@ -20,10 +20,10 @@ const Home: React.FC = () => {
     setters.setSearch(e.target.value);
   };
 
-  console.log({ data: state.data });
+  console.log({ searchResult: state.searchResult });
 
   useEffect(() => {
-    requests.getData(state.search);
+    requests.getSearchResult(state.search);
   }, [state.search]);
 
   const renderSearchResults = () => {
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
   };
 
   const renderContent = () => {
-    if (state.data) {
+    if (state.searchResult) {
       return renderSearchResults();
     }
 
