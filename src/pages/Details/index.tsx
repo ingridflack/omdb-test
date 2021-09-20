@@ -4,28 +4,27 @@ import {
   Button,
   BackIcon,
   Info,
+  InfoItem,
   Span,
   LeftSide,
-  Title,
+  MovieTitle,
   Row,
-  ImdbBox,
+  ImdbContainer,
   ImdbLogo,
-  Rating,
-  RatingBox,
   Logo,
-  Percentage,
-  FavoriteBox,
+  FavoriteButton,
   HeartIcon,
-  PlotContainer,
-  Plot,
-  Description,
-  CastList,
-  Cast,
-  GenreList,
-  Genre,
-  Director,
-  RigthSide,
+  DetailsContainer,
+  Title,
+  TextContent,
+  ListContainer,
+  List,
+  ListItem,
+  RightSide,
   Cover,
+  Col,
+  RTContainer,
+  ColValue,
 } from "./styles";
 
 import IMDb from "../../assets/images/imdb.svg";
@@ -39,52 +38,69 @@ const Details: React.FC = () => {
           <BackIcon />
         </Button>
         <Info>
-          57 min • 2011-2019 • <Span>TV-MA</Span>
+          <InfoItem>57 min</InfoItem>
+          <InfoItem>2011-2019</InfoItem>
+          <InfoItem>
+            <Span>TV-MA</Span>
+          </InfoItem>
         </Info>
       </Header>
+
       <LeftSide>
-        <Title>Game of Thrones</Title>
+        <MovieTitle>Game of Thrones</MovieTitle>
+
         <Row>
-          <ImdbBox>
-            <ImdbLogo src={IMDb} />
-            <Rating>6.9/10</Rating>
-          </ImdbBox>
-          <RatingBox>
-            <Logo src={RatingImg} />
-            <Percentage>82%</Percentage>
-          </RatingBox>
-          <FavoriteBox>
+          <Col>
+            <ImdbContainer>
+              <ImdbLogo src={IMDb} />
+            </ImdbContainer>
+            <ColValue>6.9/10</ColValue>
+          </Col>
+          <Col>
+            <RTContainer>
+              <Logo src={RatingImg} />
+            </RTContainer>
+            <ColValue>82%</ColValue>
+          </Col>
+          <FavoriteButton>
             <HeartIcon />
             Add to favorites
-          </FavoriteBox>
+          </FavoriteButton>
         </Row>
-        <PlotContainer>
-          <Plot>Plot</Plot>
-          <Description>
+
+        <DetailsContainer>
+          <Title>Plot</Title>
+          <TextContent>
             Nine noble families fight for control over the lands of Westeros,
             while an ancient enemy returns after being dormant for millennia.
-          </Description>
-        </PlotContainer>
-        <CastList>
-          Cast
-          <Cast>Emilia Clarke</Cast>
-          <Cast>Emilia Clarke</Cast>
-          <Cast>Emilia Clarke</Cast>
-        </CastList>
-        <GenreList>
-          Genre
-          <Genre>Action</Genre>
-          <Genre>Action</Genre>
-          <Genre>Action</Genre>
-        </GenreList>
-        <Director>
-          Director
-          <span>N/A</span>
-        </Director>
+          </TextContent>
+
+          <ListContainer>
+            <List>
+              <Title>Cast</Title>
+              <ListItem>Emilia Clarke</ListItem>
+              <ListItem>Emilia Clarke</ListItem>
+              <ListItem>Emilia Clarke</ListItem>
+            </List>
+
+            <List>
+              <Title>Genre</Title>
+              <ListItem>Action</ListItem>
+              <ListItem>Action</ListItem>
+              <ListItem>Action</ListItem>
+            </List>
+
+            <List>
+              <Title>Director</Title>
+              <ListItem>N/A</ListItem>
+            </List>
+          </ListContainer>
+        </DetailsContainer>
       </LeftSide>
-      <RigthSide>
-        <Cover />
-      </RigthSide>
+
+      <RightSide>
+        <Cover src={undefined} />
+      </RightSide>
     </Container>
   );
 };

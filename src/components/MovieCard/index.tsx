@@ -1,6 +1,6 @@
-import { Container } from "./styles";
+import { Cover } from "./styles";
 
 const MovieCard: React.FC = () => {
-  return <Container></Container>;
+  return <Cover src={undefined}></Cover>;
 };
 export default MovieCard;
