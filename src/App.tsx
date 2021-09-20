@@ -1,11 +1,14 @@
 import { createGlobalStyle } from "styled-components";
+import GlobalState from "./global/GlobalState";
 import Router from "./routes/Router";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Router />;
+      <GlobalState>
+        <Router />
+      </GlobalState>
     </>
   );
 }

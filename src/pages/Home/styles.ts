@@ -30,7 +30,16 @@ export const BoxContent = styled.div`
   margin-top: 175px;
   text-align: center;
 `;
+
+export const Results = styled.div`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  margin: 30px 120px;
+`;
+
 export const Image = styled.img``;
+
 export const Title = styled.h3`
   margin-top: 24px;
   color: #fff;

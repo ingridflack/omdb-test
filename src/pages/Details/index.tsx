@@ -29,32 +29,45 @@ import {
 
 import IMDb from "../../assets/images/imdb.svg";
 import RatingImg from "../../assets/images/image-rating.svg";
+import { useContext } from "react";
+import GlobalContext from "../../global/GlobalContext";
+import { useHistory } from "react-router";
 
 const Details: React.FC = () => {
+  const {
+    state: { data },
+  }: any = useContext(GlobalContext);
+
+  const history = useHistory();
+
+  const goBack = () => {
+    history.goBack();
+  };
+
   return (
     <Container>
       <Header>
-        <Button>
+        <Button onClick={goBack}>
           <BackIcon />
         </Button>
         <Info>
-          <InfoItem>57 min</InfoItem>
-          <InfoItem>2011-2019</InfoItem>
+          <InfoItem>{data.Runtime}</InfoItem>
+          <InfoItem>{data.Year}</InfoItem>
           <InfoItem>
-            <Span>TV-MA</Span>
+            <Span>{data.Rated}</Span>
           </InfoItem>
         </Info>
       </Header>
 
       <LeftSide>
-        <MovieTitle>Game of Thrones</MovieTitle>
+        <MovieTitle>{data.Title}</MovieTitle>
 
         <Row>
           <Col>
             <ImdbContainer>
               <ImdbLogo src={IMDb} />
             </ImdbContainer>
-            <ColValue>6.9/10</ColValue>
+            <ColValue>{data.imdbRating}/10</ColValue>
           </Col>
           <Col>
             <RTContainer>
@@ -70,36 +83,33 @@ const Details: React.FC = () => {
 
         <DetailsContainer>
           <Title>Plot</Title>
-          <TextContent>
-            Nine noble families fight for control over the lands of Westeros,
-            while an ancient enemy returns after being dormant for millennia.
-          </TextContent>
+          <TextContent>{data.Plot}</TextContent>
 
           <ListContainer>
             <List>
               <Title>Cast</Title>
-              <ListItem>Emilia Clarke</ListItem>
-              <ListItem>Emilia Clarke</ListItem>
-              <ListItem>Emilia Clarke</ListItem>
+              {data.Actors.split(",").map((actor: string) => (
+                <ListItem key={actor}>{actor.trim()}</ListItem>
+              ))}
             </List>
 
             <List>
               <Title>Genre</Title>
-              <ListItem>Action</ListItem>
-              <ListItem>Action</ListItem>
-              <ListItem>Action</ListItem>
+              {data.Genre.split(",").map((genre: string) => (
+                <ListItem key={genre}>{genre.trim()}</ListItem>
+              ))}
             </List>
 
             <List>
               <Title>Director</Title>
-              <ListItem>N/A</ListItem>
+              <ListItem>{data.Director}</ListItem>
             </List>
           </ListContainer>
         </DetailsContainer>
       </LeftSide>
 
       <RightSide>
-        <Cover src={undefined} />
+        <Cover src={data.Poster} />
       </RightSide>
     </Container>
   );
