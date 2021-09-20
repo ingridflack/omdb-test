@@ -1,14 +1,8 @@
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 export const SearchContainer = styled.div`
-  position: relative;
-  margin: 50px 120px 0 120px;
+  margin-bottom: 30px;
   display: flex;
   align-items: center;
 `;
@@ -27,15 +21,19 @@ export const SearchIcon = styled(AiOutlineSearch)`
   margin-left: 10px;
 `;
 export const BoxContent = styled.div`
-  margin-top: 175px;
   text-align: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 export const Results = styled.div`
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  margin: 30px 120px;
+  margin-top: 30px;
 `;
 
 export const Image = styled.img``;
@@ -51,4 +49,9 @@ export const Subtitle = styled.p`
   color: #7b8c98;
   line-height: 16px;
   margin-top: 8px;
+`;
+
+export const Message = styled.h3`
+  color: #fff;
+  font-weight: 400;
 `;

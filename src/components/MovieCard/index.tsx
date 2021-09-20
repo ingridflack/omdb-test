@@ -8,12 +8,12 @@ import {
   Year,
 } from "./styles";
 
-const MovieCard: React.FC<any> = ({ item }) => {
+const MovieCard: React.FC<any> = ({ item, ...props }) => {
   return (
-    <Container>
+    <Container {...props}>
       <Poster src={item.Poster} />
       <Overlay>
-        <FavoriteButton>{true ? <BsHeartFill /> : <BsHeart />}</FavoriteButton>
+        <FavoriteButton>{true ? <BsHeart /> : <BsHeartFill />}</FavoriteButton>
         <Title>{item.Title}</Title>
         <Year>{item.Year}</Year>
       </Overlay>

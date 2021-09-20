@@ -1,11 +1,6 @@
 import styled from "styled-components";
 import { BsHeart, BsHeartFill, BsArrowLeft } from "react-icons/bs";
 
-export const Container = styled.div`
-  color: #fff;
-  margin: 60px 120px;
-`;
-
 export const Header = styled.div`
   margin-bottom: 16px;
 `;
@@ -128,6 +123,10 @@ export const HeartIcon = styled(BsHeart)`
   margin-right: 6px;
 `;
 
+export const Content = styled.div`
+  display: flex;
+  gap: 40px;
+`;
 export const DetailsContainer = styled.div``;
 
 export const Title = styled.p`
@@ -156,9 +155,15 @@ export const ListItem = styled.p`
   line-height: 1.5;
 `;
 
-export const RightSide = styled.div``;
+export const RightSide = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Cover = styled.img`
   border-radius: 8px;
-  max-width: 360px;
+  width: 360px;
+  height: 508px;
 `;

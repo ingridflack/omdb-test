@@ -1,9 +1,10 @@
 import { ChangeEvent, useContext, useEffect } from "react";
+import { useHistory } from "react-router";
 import HomeImg from "../../assets/images/home-img.png";
+import Loader from "../../components/Loader";
 import MovieCard from "../../components/MovieCard";
 import GlobalContext from "../../global/GlobalContext";
 import {
-  Container,
   SearchContainer,
   Input,
   SearchIcon,
@@ -12,52 +13,73 @@ import {
   Image,
   Title,
   Subtitle,
+  Message,
 } from "./styles";
 
 const Home: React.FC = () => {
-  const { state, setters, requests }: any = useContext(GlobalContext);
+  const {
+    state: { isLoading, searchResult, search },
+    setters,
+    requests: { getSearchResult },
+  }: any = useContext(GlobalContext);
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setters.setSearch(e.target.value);
   };
-
-  console.log({ searchResult: state.searchResult });
+  const history = useHistory();
 
   useEffect(() => {
-    requests.getSearchResult(state.search);
-  }, [state.search]);
+    getSearchResult(search);
+  }, [getSearchResult, search]);
+
+  const getDetails = (id: string) => {
+    history.push(`/details/${id}`);
+  };
 
   const renderSearchResults = () => {
-    return state.data.map((item: any) => {
-      return <MovieCard item={item} />;
+    return searchResult.map((item: any) => {
+      return <MovieCard onClick={() => getDetails(item.imdbID)} item={item} />;
     });
   };
 
   const renderContent = () => {
-    if (state.searchResult) {
-      return renderSearchResults();
-    }
+    if (!searchResult)
+      return (
+        <BoxContent>
+          <Image src={HomeImg} />
+          <Title>Don't know what to search?</Title>
+          <Subtitle>Here's an offer you can't refuse</Subtitle>
+        </BoxContent>
+      );
 
-    return (
-      <BoxContent>
-        <Image src={HomeImg} />
-        <Title>Don't know what to search?</Title>
-        <Subtitle>Here's an offer you can't refuse</Subtitle>
-      </BoxContent>
-    );
+    if (isLoading)
+      return (
+        <BoxContent>
+          <Loader />
+        </BoxContent>
+      );
+
+    if (!searchResult.length)
+      return (
+        <BoxContent>
+          <Message>Nenhum filme encontrado :(</Message>
+        </BoxContent>
+      );
+
+    return <Results>{renderSearchResults()}</Results>;
   };
 
   return (
-    <Container>
+    <>
       <SearchContainer>
         <SearchIcon />
         <Input
-          value={state.search}
+          value={search}
           onChange={handleInputChange}
           placeholder="Search movies..."
         />
       </SearchContainer>
-      <Results>{renderContent()}</Results>
-    </Container>
+      {renderContent()}
+    </>
   );
 };
 export default Home;
