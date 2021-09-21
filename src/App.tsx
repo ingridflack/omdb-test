@@ -1,6 +1,8 @@
 import styled, { createGlobalStyle } from "styled-components";
 import GlobalState from "./global/GlobalState";
 import Router from "./routes/Router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Container = styled.main`
   padding: 50px 120px;
@@ -8,6 +10,10 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   color: #fff;
+
+  @media (max-width: 768px) {
+    padding: 25px 30px;
+  }
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -29,6 +35,7 @@ function App() {
       <GlobalStyle />
       <GlobalState>
         <Router />
+        <ToastContainer limit={3} autoClose={3000} />
       </GlobalState>
     </Container>
   );

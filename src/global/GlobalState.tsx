@@ -1,7 +1,9 @@
-import axios from "axios";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import GlobalContext from "./GlobalContext";
 import debounce from "lodash.debounce";
+import { toast } from "react-toastify";
+
+import api from "../config/api";
+import GlobalContext from "./GlobalContext";
 import { IMovie } from "../config/interface";
 
 const GlobalState: React.FC = ({ children }) => {
@@ -29,6 +31,7 @@ const GlobalState: React.FC = ({ children }) => {
       removeFromFavorites(movie);
     } else {
       setFavorites((favorites: IMovie[]) => [...favorites, movie]);
+      toast.success("Added to favorites!");
     }
   };
 
@@ -37,16 +40,15 @@ const GlobalState: React.FC = ({ children }) => {
       (item) => movie.imdbID !== item.imdbID
     );
     setFavorites(newFavorites);
+    toast.success("Removed from favorites!");
   };
-
-  console.log(favorites);
 
   const getSearchResult = useCallback((search: string) => {
     if (!search.length) return;
 
     setIsLoading(true);
-    axios
-      .get("https://www.omdbapi.com", {
+    api
+      .get("/", {
         params: {
           s: search,
           apiKey: process.env.REACT_APP_API_KEY,
@@ -73,8 +75,8 @@ const GlobalState: React.FC = ({ children }) => {
   const getMovieDetail = (id: string) => {
     setIsLoading(true);
 
-    axios
-      .get("https://www.omdbapi.com", {
+    api
+      .get("/", {
         params: {
           i: id,
           apiKey: process.env.REACT_APP_API_KEY,

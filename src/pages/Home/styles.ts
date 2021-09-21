@@ -44,6 +44,10 @@ export const Results = styled.div`
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   margin-top: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
 `;
 
 export const Image = styled.img``;

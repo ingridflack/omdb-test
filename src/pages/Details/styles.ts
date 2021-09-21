@@ -52,11 +52,20 @@ export const Span = styled.span`
 
 export const LeftSide = styled.div`
   max-width: 512px;
+
+  @media (max-width: 1160px) {
+    min-width: 300px;
+  }
 `;
 
 export const MovieTitle = styled.h1`
   font-size: 60px;
   line-height: 80px;
+
+  @media (max-width: 1092px) {
+    font-size: 30px;
+    line-height: 40px;
+  }
 `;
 
 export const Row = styled.div`
@@ -144,14 +153,28 @@ export const FavoriteButton = styled.button<IFavoriteButton>`
 export const Content = styled.div`
   display: flex;
   gap: 40px;
+
+  @media (max-width: 1160px) {
+    flex-direction: column;
+  }
 `;
-export const DetailsContainer = styled.div``;
+export const DetailsContainer = styled.div`
+  @media (max-width: 1160px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
 
 export const Title = styled.p`
   color: #7b8c98;
   margin-top: 32px;
   margin-bottom: 8px;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    margin-top: 15px;
+  }
 `;
 
 export const TextContent = styled.p`
@@ -162,6 +185,16 @@ export const TextContent = styled.p`
 export const ListContainer = styled.div`
   display: flex;
   gap: 64px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1160px) {
+    max-width: 300px;
+    flex-wrap: wrap;
+  }
 `;
 
 export const List = styled.div`
