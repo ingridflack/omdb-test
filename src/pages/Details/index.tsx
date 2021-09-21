@@ -24,6 +24,7 @@ import {
   Col,
   RTContainer,
   ColValue,
+  Container,
 } from "./styles";
 
 import IMDb from "../../assets/images/imdb.svg";
@@ -35,6 +36,7 @@ import Loader from "../../components/Loader";
 import { BoxContent } from "../Home/styles";
 import { IMovie } from "../../config/interface";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { getPosterSource } from "../../utils/movie";
 
 interface IDetailsParams {
   id: string;
@@ -81,7 +83,7 @@ const Details: React.FC = () => {
   if (!movie) return null;
 
   return (
-    <>
+    <Container backgroundImage={getPosterSource(movie)}>
       <Header>
         <Button onClick={goBack}>
           <BackIcon />
@@ -160,7 +162,7 @@ const Details: React.FC = () => {
           <Cover movie={movie} />
         </RightSide>
       </Content>
-    </>
+    </Container>
   );
 };
 export default Details;

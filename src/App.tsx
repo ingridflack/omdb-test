@@ -11,6 +11,10 @@ const Container = styled.main`
   flex-direction: column;
   color: #fff;
 
+  @media (max-width: 1160px) {
+    padding: 25px 60px;
+  }
+
   @media (max-width: 768px) {
     padding: 25px 30px;
   }
