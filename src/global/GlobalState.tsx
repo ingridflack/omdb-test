@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import GlobalContext from "./GlobalContext";
 import debounce from "lodash.debounce";
 import { IMovie } from "../config/interface";
@@ -11,20 +11,42 @@ const GlobalState: React.FC = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState<IMovie[]>([]);
 
-  // const addToFavorites = (movie: any) => {
-  //   if (seTaNoFavorites) {
-  //     removeDoFavorites();
-  //   } else {
-  //     setFavorites((favorites: any[]) => [...favorites, movie]);
-  //   }
-  // };
+  useEffect(() => {
+    const localFavorites = localStorage.getItem("favorites");
+    localFavorites && setFavorites(JSON.parse(localFavorites));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavoriteMovie = (movie: IMovie) => {
+    const isAlreadyInFavorites = favorites.some(
+      (item) => movie.imdbID === item.imdbID
+    );
+
+    if (isAlreadyInFavorites) {
+      removeFromFavorites(movie);
+    } else {
+      setFavorites((favorites: IMovie[]) => [...favorites, movie]);
+    }
+  };
+
+  const removeFromFavorites = (movie: IMovie) => {
+    const newFavorites = favorites.filter(
+      (item) => movie.imdbID !== item.imdbID
+    );
+    setFavorites(newFavorites);
+  };
+
+  console.log(favorites);
 
   const getSearchResult = useCallback((search: string) => {
     if (!search.length) return;
 
     setIsLoading(true);
     axios
-      .get("http://www.omdbapi.com", {
+      .get("https://www.omdbapi.com", {
         params: {
           s: search,
           apiKey: process.env.REACT_APP_API_KEY,
@@ -52,7 +74,7 @@ const GlobalState: React.FC = ({ children }) => {
     setIsLoading(true);
 
     axios
-      .get("http://www.omdbapi.com", {
+      .get("https://www.omdbapi.com", {
         params: {
           i: id,
           apiKey: process.env.REACT_APP_API_KEY,
@@ -73,8 +95,8 @@ const GlobalState: React.FC = ({ children }) => {
       });
   };
 
-  const state = { searchResult, search, movie, isLoading };
-  const setters = { setSearch, setMovie };
+  const state = { searchResult, search, movie, isLoading, favorites };
+  const setters = { setSearch, setMovie, toggleFavoriteMovie };
   const requests = { getSearchResult: debouncedFetchData, getMovieDetail };
 
   return (

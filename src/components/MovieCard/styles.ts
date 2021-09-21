@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Poster = styled.img`
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-  max-width: 100%;
-`;
+export const Poster = styled.img``;
 
 export const Overlay = styled.span`
   border-radius: 8px;
@@ -33,7 +28,11 @@ export const Container = styled(Link)`
   }
 `;
 
-export const FavoriteButton = styled.button`
+interface IFavoriteButton {
+  active: boolean;
+}
+
+export const FavoriteButton = styled.button<IFavoriteButton>`
   border: none;
   background-color: transparent;
   color: #fff;
@@ -41,6 +40,29 @@ export const FavoriteButton = styled.button`
   top: 0;
   right: 0;
   margin: 10px;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    border-color: #fff;
+  }
+
+  > svg {
+    margin-right: 6px;
+  }
+
+  ${({ active }) => {
+    return (
+      active &&
+      css`
+        &,
+        &:hover {
+          color: #fff;
+          border-color: #fff;
+        }
+      `
+    );
+  }}
 `;
 
 export const Title = styled.p`

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { BsHeart, BsHeartFill, BsArrowLeft } from "react-icons/bs";
+import styled, { css } from "styled-components";
+import { BsArrowLeft } from "react-icons/bs";
 import MoviePoster from "../../components/MoviePoster";
 
 export const Header = styled.div`
@@ -102,7 +102,11 @@ export const ColValue = styled.div`
 
 export const Logo = styled.img``;
 
-export const FavoriteButton = styled.button`
+interface IFavoriteButton {
+  active: boolean;
+}
+
+export const FavoriteButton = styled.button<IFavoriteButton>`
   background-color: transparent;
   border: none;
   display: flex;
@@ -118,10 +122,23 @@ export const FavoriteButton = styled.button`
     color: #fff;
     border-color: #fff;
   }
-`;
 
-export const HeartIcon = styled(BsHeart)`
-  margin-right: 6px;
+  > svg {
+    margin-right: 6px;
+  }
+
+  ${({ active }) => {
+    return (
+      active &&
+      css`
+        &,
+        &:hover {
+          color: #fff;
+          border-color: #fff;
+        }
+      `
+    );
+  }}
 `;
 
 export const Content = styled.div`

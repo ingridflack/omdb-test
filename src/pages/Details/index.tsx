@@ -13,7 +13,6 @@ import {
   ImdbLogo,
   Logo,
   FavoriteButton,
-  HeartIcon,
   DetailsContainer,
   Title,
   TextContent,
@@ -34,6 +33,8 @@ import GlobalContext from "../../global/GlobalContext";
 import { Redirect, useHistory, useParams } from "react-router";
 import Loader from "../../components/Loader";
 import { BoxContent } from "../Home/styles";
+import { IMovie } from "../../config/interface";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 interface IDetailsParams {
   id: string;
@@ -43,12 +44,15 @@ const Details: React.FC = () => {
   const { id }: IDetailsParams = useParams();
 
   const {
-    state: { movie, isLoading },
+    state: { movie, isLoading, favorites },
     requests: { getMovieDetail },
-    setters: { setMovie },
+    setters: { setMovie, toggleFavoriteMovie },
   }: any = useContext(GlobalContext);
 
   const history = useHistory();
+  const isFavorited = favorites.some(
+    (item: IMovie) => movie?.imdbID === item.imdbID
+  );
 
   const goBack = () => {
     history.goBack();
@@ -107,9 +111,19 @@ const Details: React.FC = () => {
               </RTContainer>
               <ColValue>82%</ColValue>
             </Col>
-            <FavoriteButton>
-              <HeartIcon />
-              Add to favorites
+            <FavoriteButton
+              active={isFavorited}
+              onClick={() => toggleFavoriteMovie(movie)}
+            >
+              {isFavorited ? (
+                <>
+                  <BsHeartFill /> Favorite
+                </>
+              ) : (
+                <>
+                  <BsHeart /> Add to favorites
+                </>
+              )}
             </FavoriteButton>
           </Row>
 
@@ -134,7 +148,9 @@ const Details: React.FC = () => {
 
               <List>
                 <Title>Director</Title>
-                <ListItem>{movie.Director}</ListItem>
+                {movie.Director?.split(",").map((director: string) => (
+                  <ListItem key={director}>{director.trim()}</ListItem>
+                ))}
               </List>
             </ListContainer>
           </DetailsContainer>
