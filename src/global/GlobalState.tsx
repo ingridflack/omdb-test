@@ -12,6 +12,7 @@ const GlobalState: React.FC = ({ children }) => {
   const [movie, setMovie] = useState<IMovie | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState<IMovie[]>([]);
+  const [totalResults, setTotalResults] = useState();
 
   useEffect(() => {
     const localFavorites = localStorage.getItem("favorites");
@@ -43,23 +44,31 @@ const GlobalState: React.FC = ({ children }) => {
     toast.success("Removed from favorites!");
   };
 
-  const getSearchResult = useCallback((search: string) => {
+  const updateSearchInput = (input: string) => {
+    setSearch(input);
+  };
+
+  const getSearchResult = useCallback((search: string, page: number = 1) => {
     if (!search.length) return;
 
     setIsLoading(true);
+
     api
       .get("/", {
         params: {
+          page,
           s: search,
           apiKey: process.env.REACT_APP_API_KEY,
         },
       })
       .then((res) => {
-        const results = res.data.Error ? [] : res.data.Search;
+        const results: IMovie[] = res.data.Error ? [] : res.data.Search;
 
+        setTotalResults(res.data.totalResults);
         setSearchResult(results);
-        console.log("deeeeeeeu", { res, results });
+
         setIsLoading(false);
+        console.log("deeeeeeeu", { res, results });
       })
       .catch((e) => {
         console.log({ ...e });
@@ -73,6 +82,7 @@ const GlobalState: React.FC = ({ children }) => {
   );
 
   const getMovieDetail = (id: string) => {
+    console.log(searchResult);
     setIsLoading(true);
 
     api
@@ -86,7 +96,6 @@ const GlobalState: React.FC = ({ children }) => {
         console.log({ res });
 
         const result = res.data.Error ? null : res.data;
-        console.log({ result });
 
         setMovie(result);
         setIsLoading(false);
@@ -97,8 +106,20 @@ const GlobalState: React.FC = ({ children }) => {
       });
   };
 
-  const state = { searchResult, search, movie, isLoading, favorites };
-  const setters = { setSearch, setMovie, toggleFavoriteMovie };
+  const state = {
+    searchResult,
+    search,
+    movie,
+    isLoading,
+    favorites,
+    totalResults,
+  };
+  const setters = {
+    setSearch,
+    setMovie,
+    toggleFavoriteMovie,
+    updateSearchInput,
+  };
   const requests = { getSearchResult: debouncedFetchData, getMovieDetail };
 
   return (

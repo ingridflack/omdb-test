@@ -53,8 +53,8 @@ export const Span = styled.span`
 export const LeftSide = styled.div`
   max-width: 512px;
 
-  @media (max-width: 1160px) {
-    min-width: 300px;
+  @media (min-width: 768px) {
+    min-width: auto;
   }
 `;
 
@@ -192,7 +192,7 @@ export const ListContainer = styled.div`
   }
 
   @media (max-width: 1160px) {
-    max-width: 300px;
+    min-width: 300px;
     flex-wrap: wrap;
   }
 `;
