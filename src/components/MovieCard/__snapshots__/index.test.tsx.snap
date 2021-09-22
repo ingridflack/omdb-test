@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieCard should match snapshot 1`] = `
+<Styled(Link)
+  to="/"
+>
+  <MoviePoster
+    movie={
+      Object {
+        "Actors": "Actors Test",
+        "Director": "Director Test",
+        "Genre": "Genre Test",
+        "Plot": "Plot Test",
+        "Poster": "Poster Test",
+        "Rated": "Rated Test",
+        "Runtime": "100 min",
+        "Title": "Title Test",
+        "Year": "1996",
+        "imdbID": "ID Test",
+        "imdbRating": "Rating Test",
+      }
+    }
+  />
+  <styled.span>
+    <styled.button
+      active={false}
+      onClick={[Function]}
+    >
+      <BsHeart />
+    </styled.button>
+    <styled.p>
+      Title Test
+    </styled.p>
+    <styled.p>
+      1996
+    </styled.p>
+  </styled.span>
+</Styled(Link)>
+`;

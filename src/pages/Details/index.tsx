@@ -31,7 +31,7 @@ import IMDb from "../../assets/images/imdb.svg";
 import RatingImg from "../../assets/images/image-rating.svg";
 import { useContext, useEffect } from "react";
 import GlobalContext from "../../global/GlobalContext";
-import { Redirect, useHistory, useParams } from "react-router";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { BoxContent } from "../Home/styles";
 import { IMovie } from "../../config/interface";
@@ -96,6 +96,7 @@ const Details: React.FC = () => {
           </InfoItem>
         </Info>
       </Header>
+
       <Content>
         <LeftSide>
           <MovieTitle>{movie.Title}</MovieTitle>
@@ -113,6 +114,7 @@ const Details: React.FC = () => {
               </RTContainer>
               <ColValue>82%</ColValue>
             </Col>
+
             <FavoriteButton
               active={isFavorited}
               onClick={() => toggleFavoriteMovie(movie)}

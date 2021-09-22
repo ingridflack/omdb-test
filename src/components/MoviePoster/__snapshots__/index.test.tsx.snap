@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviePoster should match snapshot 1`] = `
+<styled.img
+  alt="Title Test"
+  src="Poster Test"
+/>
+`;
+
+exports[`MoviePoster should match snapshot with N/A poster image 1`] = `
+<styled.img
+  alt="Title Test"
+  src="https://via.placeholder.com/320x460?text=Image+not+found"
+/>
+`;

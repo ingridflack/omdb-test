@@ -33,7 +33,7 @@ const MovieCard: React.FC<IMovieCard> = ({ item, ...props }) => {
           active={isFavorited}
           onClick={handleFavoriteButtonClick}
         >
-          {isFavorited ? <BsHeartFill /> : <BsHeart />}{" "}
+          {isFavorited ? <BsHeartFill /> : <BsHeart />}
         </FavoriteButton>
         <Title>{item.Title}</Title>
         <Year>{item.Year}</Year>
