@@ -26,16 +26,21 @@ const MovieCard: React.FC<IMovieCard> = ({ item, ...props }) => {
   };
 
   return (
-    <Container {...props}>
+    <Container data-cy="movie-card" {...props}>
       <MoviePoster movie={item} />
       <Overlay>
         <FavoriteButton
+          data-cy="favorite-button"
           active={isFavorited}
           onClick={handleFavoriteButtonClick}
         >
-          {isFavorited ? <BsHeartFill /> : <BsHeart />}
+          {isFavorited ? (
+            <BsHeartFill data-cy="favorite-button-checked" />
+          ) : (
+            <BsHeart data-cy="favorite-button-unchecked" />
+          )}
         </FavoriteButton>
-        <Title>{item.Title}</Title>
+        <Title data-cy="movie-card-title">{item.Title}</Title>
         <Year>{item.Year}</Year>
       </Overlay>
     </Container>

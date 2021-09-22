@@ -2,6 +2,7 @@
 
 exports[`MovieCard should match snapshot 1`] = `
 <Styled(Link)
+  data-cy="movie-card"
   to="/"
 >
   <MoviePoster
@@ -24,11 +25,16 @@ exports[`MovieCard should match snapshot 1`] = `
   <styled.span>
     <styled.button
       active={false}
+      data-cy="favorite-button"
       onClick={[Function]}
     >
-      <BsHeart />
+      <BsHeart
+        data-cy="favorite-button-unchecked"
+      />
     </styled.button>
-    <styled.p>
+    <styled.p
+      data-cy="movie-card-title"
+    >
       Title Test
     </styled.p>
     <styled.p>

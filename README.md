@@ -1,46 +1,36 @@
-# Getting Started with Create React App
+# Front-End Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Link para visualizar a aplicação](https://filmes-omdb.surge.sh/)
 
-## Available Scripts
+## Pré-requisitos
 
-In the project directory, you can run:
+- NodeJs
+- Gerar uma chave de acesso para fazer as requisições [nesse link](http://www.omdbapi.com/apikey.aspx)
 
-### `yarn start`
+## Como rodar o projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Instale as dependências com `yarn` ou `npm install`
+- Faça uma cópia do arquivo `.env.example`, renomeie-a para `.env.local` e preencha os campos necessários.
+- Rode a aplicação usando o comando `yarn start` ou `npm start`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Testes unitários
 
-### `yarn test`
+- Para rodar os testes, execute o comando `yarn test`
+- Para obter o relatório de cobertura de código, execute o comando `yarn test --coverage`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Teste e2e
 
-### `yarn build`
+- Rode o projeto e execute o comando `yarn e2e`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Ferramentas e bibliotecas utilizadas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [ReactJS](https://pt-br.reactjs.org/docs/getting-started.html)
+- [TypeScript](https://www.typescriptlang.org/docs/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Styled Components](https://styled-components.com/docs)
+- [Enzyme](https://enzymejs.github.io/enzyme/)
+- [Cypress](https://docs.cypress.io/guides/overview/why-cypress)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Melhorias futuras
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Criar página para renderizar os filmes adicionados aos favoritos;

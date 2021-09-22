@@ -99,7 +99,7 @@ const Details: React.FC = () => {
 
       <Content>
         <LeftSide>
-          <MovieTitle>{movie.Title}</MovieTitle>
+          <MovieTitle data-cy="movie-title">{movie.Title}</MovieTitle>
 
           <Row>
             <Col>

@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^5.1.9",
     "@types/styled-components": "^5.1.14",
     "axios": "^0.21.4",
+    "cypress": "^8.4.1",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.2",
     "lodash.debounce": "^4.0.8",
@@ -35,7 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2e": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -56,11 +58,12 @@
     ]
   },
   "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3"
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
+    "cypress-real-events": "^1.5.1"
   },
   "jest": {
-   "snapshotSerializers": [
-     "enzyme-to-json/serializer"
-   ]
- }
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  }
 }

@@ -80,7 +80,7 @@ const Home: React.FC = () => {
     return (
       <>
         <Results>{renderSearchResults()}</Results>
-        <PaginationContainer>
+        <PaginationContainer data-cy="pagination">
           <ReactPaginate
             previousLabel="Previous"
             nextLabel="Next"
@@ -103,6 +103,7 @@ const Home: React.FC = () => {
       <SearchContainer>
         {isLoading ? <Loader /> : <AiOutlineSearch />}
         <Input
+          data-cy="input"
           value={search}
           onChange={handleInputChange}
           placeholder="Search movies..."
